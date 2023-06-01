@@ -1,0 +1,34 @@
+roscore
+
+source ~/ydlidar_ws/devel/setup.bash
+
+roslaunch ydlidar_ros_driver TX.launch
+
+roslaunch rosbridge_server rosbridge_websocket.launch
+
+roslaunch hector_slam_launch tutorial.launch
+
+source ~/catkin_ws/devel/setup.bash
+
+rosrun rosserial_arduino serial_node.py _port:=/dev/ttyACM0 _baud:=115200
+
+cd catkin_ws/src/smart/
+
+rosrun smart main_slam.py 
+rosrun smart stereoDetect_ORG.py
+
+cd ~
+
+#smasrt 2.4G
+export ROS_HOSTNAME=192.168.0.141
+export ROS_MASTER_URI=http://192.168.0.141:11311
+
+#현우의 핫스팟
+#export ROS_HOSTNAME=192.168.70.200
+#export ROS_MASTER_URI=http://192.168.70.200:11311
+
+
+#upload arduino
+avrdude -C /etc/avrdude.conf -v -patmega328p -carduino -P/dev/ttyACM0 -b115200 -D -Uflash:w:/home/khw/catkin_ws/src/smart/arduino/test2/test2.ino 
+
+killall -9 rosmaster
