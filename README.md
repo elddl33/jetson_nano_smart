@@ -42,6 +42,7 @@ catkin_make
 cd ~/catkin_ws/src
 catkin_init_workspace
 cd ~/catkin_ws/
+//plz remove build and devel
 catkin build
 catkin_create_pkg smart rospy roscpp std_msgs
 echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
