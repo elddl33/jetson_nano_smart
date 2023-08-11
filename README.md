@@ -37,11 +37,13 @@ sudo apt-get install python-catkin-tools
 ```
 ```
 mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws
 catkin_make
 cd ~/catkin_ws/src
 catkin_init_workspace
 cd ~/catkin_ws/
-catkin buildcatkin_create_pkg smart rospy roscpp std_msgs
+catkin build
+catkin_create_pkg smart rospy roscpp std_msgs
 echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
